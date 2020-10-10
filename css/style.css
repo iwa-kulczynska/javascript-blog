@@ -81,6 +81,10 @@ body {
   display: inline-block;
 }
 
+.post-tags .list-horizontal li {
+  margin-right: 10px;
+}
+
 /* Authors */
 .authors li {
   margin-bottom: 12px;
