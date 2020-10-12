@@ -176,7 +176,7 @@ function tagClickHandler(event){
 
 function addClickListenersToTags(){
   /* find all links to tags */
-  const tags = document.querySelectorAll('a.active[href^="#tag-"]');
+  const tags = document.querySelectorAll('[href^="#tag-"]');
   console.log(tags);
 
   /* START LOOP: for each link */
@@ -261,7 +261,7 @@ authorClickHandler();
 
 function addClickListenersToAuthors(){
   /* find all links to authors */
-  const authors = document.querySelectorAll('a.active[href^="#"]');
+  const authors = document.querySelectorAll('[href^="#"]');
   console.log(authors);
 
   /* START LOOP: for each link */
