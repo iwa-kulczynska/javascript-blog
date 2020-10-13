@@ -257,27 +257,38 @@ function generateAuthors(){
   const authors = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every authors: */
 
-  let authorsLinksHtml = '';
+  let allAuthors = [];
   for(let author of authors){
     /* find tags wrapper */
     const authorWrapper = author.querySelector(optArticleAuthorSelector);
     /* make html variable with empty string */
-    /* get athors from data-athors attribute */
+    /* get authors from data-athors attribute */
     const authorAttribute = author.getAttribute('data-author');
     console.log(authorAttribute);
+    //[New]
     /* generate HTML of the link */
     const linkHTML = '<p><a href="#author-' + authorAttribute +'">' + authorAttribute + '</a></p>';
     console.log(linkHTML);
 
-    //[NEW] build list of authors links
-    authorsLinksHtml += '<li><a href="#author-' + authorAttribute +'"><span class="author-name">' + authorAttribute +'</span></a></li>';
+    /* [NEW] check if this link is NOT already in allAuthors
+        allTags.hasOwnProperty - eslint version */
+    if(!Object.prototype.hasOwnProperty.call(allAuthors, authorAttribute )){
+    /* [NEW] add tag to allTags object */
+      allAuthors[authorAttribute] = 1;
+    } else {
+      allAuthors[authorAttribute]++;
+    }
 
     /* insert HTML of all the links into the tags wrapper */
-    console.log(linkHTML);
     authorWrapper.innerHTML = linkHTML;
-  /* END LOOP: for every authors: */
+    /* END LOOP: for every authors: */
   }
 
+  let authorsLinksHtml = '';
+  for(let author in allAuthors){
+    authorsLinksHtml += '<li><a href="#author-' + author +'"><span class="author-name">' + author +'</span></a> ('+ allAuthors[author] +')</li>';
+  }
+  console.log(authorsLinksHtml);
   // ineerhtml authors
   const authorsListWrapper = document.querySelector(optAuthorsListSelector);
   authorsListWrapper.innerHTML = authorsLinksHtml;
